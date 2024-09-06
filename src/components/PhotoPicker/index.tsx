@@ -2,25 +2,27 @@ import React from "react";
 import {
   capturePhoto,
   onFormSubmit,
+  pickPhoto,
   requestCameraPermission,
+  requestPhotoPermission,
+  selectFile,
 } from "../../utils";
 import SizeBox from "../Sizebox";
 
 const PhotoPicker: React.FC = () => {
   return (
     <div>
-      <h2>Form Submission</h2>
-      <form onSubmit={onFormSubmit}>
-        <input type="text" id="name" placeholder="Name" required />
-        <input type="email" id="email" placeholder="Email" required />
-        <div
-          style={{
-            width: 20,
-            height: 20,
-          }}
-        />
-        <button type="submit">Submit Form</button>
-      </form>
+      <h2>Photo Picker</h2>
+      <button onClick={requestPhotoPermission}>Request Photo Permission</button>
+      <SizeBox></SizeBox>
+      <button onClick={pickPhoto}>Pick Photo</button>
+      <SizeBox></SizeBox>
+      <img
+        id="photoPicker"
+        src="https://web-bridge-react-app.netlify.app/1019372.png"
+        alt="Pick Photo"
+        style={{ width: 180 }}
+      />
       <SizeBox></SizeBox>
     </div>
   );

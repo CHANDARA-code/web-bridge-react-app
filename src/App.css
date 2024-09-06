@@ -3,6 +3,8 @@
   justify-content: space-between;
   align-self: self-start;
   margin-left: 40;
+  overflow: hidden;
+  overflow: scroll;
 }
 
 .App-logo {

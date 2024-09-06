@@ -20,12 +20,36 @@ export const requestCameraPermission = async () => {
     console.error("Camera permission denied");
   }
 };
+export const requestPhotoPermission = async () => {
+  const result = await callFlutterHandler("requestPhotoPermission");
+  if (result.success) {
+    console.log("Photo permission granted");
+  } else {
+    console.error("Photo permission denied");
+  }
+};
+
+export const goToSettingToGrantPermission = async () => {
+  await callFlutterHandler("goToSettingToGrantPermission");
+};
 
 export const capturePhoto = async () => {
   const result = await callFlutterHandler("capturePhoto");
   if (result.success) {
     const imgData = result.data;
     (document.getElementById("photo") as HTMLImageElement).src =
+      "data:image/png;base64," + imgData;
+    console.log("Photo captured successfully");
+  } else {
+    console.error("Failed to capture photo");
+  }
+};
+
+export const pickPhoto = async () => {
+  const result = await callFlutterHandler("pickPhoto");
+  if (result.success) {
+    const imgData = result.data;
+    (document.getElementById("photoPicker") as HTMLImageElement).src =
       "data:image/png;base64," + imgData;
     console.log("Photo captured successfully");
   } else {
@@ -47,12 +71,11 @@ export const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   const formData = {
     name: (document.getElementById("name") as HTMLInputElement).value,
-    email: (document.getElementById("email") as HTMLInputElement).value,
+    email: (document.getElementById("age") as HTMLInputElement).value,
   };
-  const result = await callFlutterHandler("onFormSubmit", [
-    JSON.stringify(formData),
-  ]);
-  console.log(result.message);
+  await callFlutterHandler("onFormSubmit", [JSON.stringify(formData)]);
+
+  // console.log(result.message);
 };
 
 export const selectFile = async () => {
@@ -64,9 +87,38 @@ export const selectFile = async () => {
   }
 };
 
-export const authenticateUser = async () => {
-  const result = await callFlutterHandler("authenticateUser");
-  console.log(result.message);
+export const openLink = async () => {
+  // const result = {
+  //   success: true,
+  //   data: {
+  //     url: "https://youtu.be/R9iJAVVnfH8?list=RDR9iJAVVnfH8",
+  //   },
+  //   message: "Data Return",
+  // };
+  try {
+    const result = ["https://youtu.be/R9iJAVVnfH8?list=RDR9iJAVVnfH8"];
+    await callFlutterHandler("openLink", result);
+  } catch (error) {
+    console.log(`error => ${error}`);
+  }
+};
+
+export const canAuthenticateWithBiometrics = async () => {
+  const result = await callFlutterHandler("canAuthenticateWithBiometrics");
+  if (result.success) {
+    console.log(result.message);
+  } else {
+    console.log(result.message);
+  }
+};
+
+export const authenticateWithBiometrics = async () => {
+  const result = await callFlutterHandler("authenticateBiometric");
+  if (result.success) {
+    console.log(result.message);
+  } else {
+    console.log(result.message);
+  }
 };
 
 export const sendEncryptedData = async () => {
@@ -79,3 +131,5 @@ export const sendEncryptedData = async () => {
     console.error("Error encrypting data");
   }
 };
+
+

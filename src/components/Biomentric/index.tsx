@@ -1,22 +1,19 @@
 import React from "react";
-import { onFormSubmit } from "../../utils";
+import {
+  authenticateWithBiometrics,
+  canAuthenticateWithBiometrics,
+  onFormSubmit,
+} from "../../utils";
 import SizeBox from "../Sizebox";
 
 const Biomentric: React.FC = () => {
   return (
     <div>
-      <h2>Form Submission</h2>
-      <form onSubmit={onFormSubmit}>
-        <input type="text" id="name" placeholder="Name" required />
-        <input type="email" id="email" placeholder="Email" required />
-        <div
-          style={{
-            width: 20,
-            height: 20,
-          }}
-        />
-        <button type="submit">Submit Form</button>
-      </form>
+      <h2>Biometric</h2>
+      <button onClick={canAuthenticateWithBiometrics}>Can Biometric</button>
+      <button onClick={authenticateWithBiometrics}>
+        Authenticate with biometric
+      </button>
       <SizeBox></SizeBox>
     </div>
   );
