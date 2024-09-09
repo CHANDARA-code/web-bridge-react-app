@@ -1,3 +1,11 @@
+import { JavascriptBridgeModel } from "../types/JavascriptBridgeModel";
+import {
+  CanModel,
+  PathImageModel,
+  PickPhotoBase64,
+  SensitiveModel,
+} from "../types/bridgeType";
+
 // Utility function to call Flutter handlers
 const callFlutterHandler = async (handlerName: string, args: any[] = []) => {
   try {
@@ -20,6 +28,7 @@ export const requestCameraPermission = async () => {
     console.error("Camera permission denied");
   }
 };
+
 export const requestPhotoPermission = async () => {
   const result = await callFlutterHandler("requestPhotoPermission");
   if (result.success) {
@@ -33,8 +42,8 @@ export const goToSettingToGrantPermission = async () => {
   await callFlutterHandler("goToSettingToGrantPermission");
 };
 
-export const capturePhoto = async () => {
-  const result = await callFlutterHandler("capturePhoto");
+export const capturePhotoBase64 = async () => {
+  const result = await callFlutterHandler("capturePhotoBase64");
   if (result.success) {
     const imgData = result.data;
     (document.getElementById("photo") as HTMLImageElement).src =
@@ -45,25 +54,55 @@ export const capturePhoto = async () => {
   }
 };
 
-export const pickPhoto = async () => {
-  const result = await callFlutterHandler("pickPhoto");
+export const capturePhoto = async () => {
+  const result = await callFlutterHandler("capturePhoto");
   if (result.success) {
     const imgData = result.data;
-    (document.getElementById("photoPicker") as HTMLImageElement).src =
-      "data:image/png;base64," + imgData;
-    console.log("Photo captured successfully");
+    console.log("Photo captured successfully", imgData);
   } else {
     console.error("Failed to capture photo");
   }
 };
 
-export const getDeviceLocation = async () => {
-  const result = await callFlutterHandler("getDeviceLocation");
-  if (result.success) {
-    const { latitude, longitude } = result.data;
-    console.log(`Location: Latitude ${latitude}, Longitude ${longitude}`);
-  } else {
-    console.error(result.message);
+export const pickPhotoBase64 = async () => {
+  try {
+    const result = (await callFlutterHandler(
+      "pickPhotoBase64"
+    )) as JavascriptBridgeModel<PickPhotoBase64>;
+
+    if (result == null) return;
+
+    if (result.success) {
+      const imgData = result.data?.base64;
+
+      (document.getElementById("photoPicker") as HTMLImageElement).src =
+        "data:image/png;base64," + imgData;
+      console.log("Photo captured successfully");
+    } else {
+      console.error("Failed to capture photo");
+    }
+  } catch (error) {
+    console.log("error: ", error);
+  }
+};
+
+export const pickPhoto = async () => {
+  try {
+    const result = (await callFlutterHandler(
+      "pickPhoto"
+    )) as JavascriptBridgeModel<PathImageModel>;
+    if (result == null) return;
+    if (result.success) {
+      const imgData = result.data?.path;
+      console.log("Photo captured successfully", imgData);
+      (document.getElementById("photoPicker") as HTMLImageElement).src =
+        "" + imgData;
+      console.log("Photo captured successfully");
+    } else {
+      console.error("Failed to capture photo");
+    }
+  } catch (error) {
+    console.log("pickPhoto => ", error);
   }
 };
 
@@ -79,45 +118,98 @@ export const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 };
 
 export const selectFile = async () => {
-  const result = await callFlutterHandler("selectFile");
-  if (result.success) {
-    console.log("File selected:", result.data);
-  } else {
-    console.error("No file selected");
+  try {
+    const result = (await callFlutterHandler(
+      "selectFile"
+    )) as JavascriptBridgeModel<PathImageModel>;
+    if (result == null) return;
+    if (result.success) {
+      console.log("File selected:", result.data);
+      console.log("File selected Path:", result.data?.path);
+    } else {
+      console.log("No file selected");
+    }
+  } catch (error) {
+    console.log("Error:", error);
   }
 };
 
 export const openLink = async () => {
-  // const result = {
-  //   success: true,
-  //   data: {
-  //     url: "https://youtu.be/R9iJAVVnfH8?list=RDR9iJAVVnfH8",
-  //   },
-  //   message: "Data Return",
-  // };
+  const result = {
+    success: true,
+    data: {
+      url: "https://youtu.be/R9iJAVVnfH8?list=RDR9iJAVVnfH8",
+    },
+    message: "Data Return",
+  };
   try {
-    const result = ["https://youtu.be/R9iJAVVnfH8?list=RDR9iJAVVnfH8"];
-    await callFlutterHandler("openLink", result);
+    await callFlutterHandler("openLink", [result]);
   } catch (error) {
     console.log(`error => ${error}`);
   }
 };
 
 export const canAuthenticateWithBiometrics = async () => {
-  const result = await callFlutterHandler("canAuthenticateWithBiometrics");
-  if (result.success) {
-    console.log(result.message);
-  } else {
-    console.log(result.message);
+  try {
+    const result = (await callFlutterHandler(
+      "canAuthenticateWithBiometrics"
+    )) as JavascriptBridgeModel<CanModel>;
+    if (result.success) {
+      console.log(result.message);
+    } else {
+      console.log(result.message);
+    }
+  } catch (error) {
+    console.log("error => web => canAuthenticateWithBiometrics =>", error);
   }
 };
 
 export const authenticateWithBiometrics = async () => {
-  const result = await callFlutterHandler("authenticateBiometric");
-  if (result.success) {
-    console.log(result.message);
-  } else {
-    console.log(result.message);
+  try {
+    const result = (await callFlutterHandler(
+      "authenticateBiometric"
+    )) as JavascriptBridgeModel<CanModel>;
+    if (result.success) {
+      console.log(result.message);
+    } else {
+      console.log(result.message);
+    }
+  } catch (error) {
+    console.log("error => web => authenticateWithBiometrics =>", error);
+  }
+};
+
+export const getEncryptData = async (): Promise<string | undefined> => {
+  try {
+    const result = (await callFlutterHandler(
+      "sendEncryptedData"
+    )) as JavascriptBridgeModel<SensitiveModel>;
+    if (result.success) {
+      return result.data?.sensitive;
+    } else {
+      return "";
+    }
+  } catch (error) {
+    console.log("error: $error");
+    return "";
+  }
+};
+
+export const getDecryptData = async (
+  encryptData: String
+): Promise<string | undefined> => {
+  try {
+    const result = (await callFlutterHandler("receiveEncryptedData", [
+      encryptData,
+    ])) as JavascriptBridgeModel<string>;
+    if (result.success) {
+      return result.data;
+    } else {
+      return "";
+    }
+  } catch (error) {
+    console.log("error: $error");
+    return "";
   }
 };
 
@@ -131,5 +223,3 @@ export const sendEncryptedData = async () => {
     console.error("Error encrypting data");
   }
 };
-
-

@@ -3,6 +3,7 @@ import {
   capturePhoto,
   onFormSubmit,
   pickPhoto,
+  pickPhotoBase64,
   requestCameraPermission,
   requestPhotoPermission,
   selectFile,
@@ -15,6 +16,7 @@ const PhotoPicker: React.FC = () => {
       <h2>Photo Picker</h2>
       <button onClick={requestPhotoPermission}>Request Photo Permission</button>
       <SizeBox></SizeBox>
+      <button onClick={pickPhotoBase64}>Pick Photo Base64</button>
       <button onClick={pickPhoto}>Pick Photo</button>
       <SizeBox></SizeBox>
       <img
