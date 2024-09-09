@@ -1,9 +1,13 @@
 import React from "react";
+// import {
+//   authenticateWithBiometrics,
+//   canAuthenticateWithBiometrics,
+//   onFormSubmit,
+// } from "../../utils";
 import {
   authenticateWithBiometrics,
   canAuthenticateWithBiometrics,
-  onFormSubmit,
-} from "../../utils";
+} from "javascript_dg";
 import SizeBox from "../Sizebox";
 
 const Biomentric: React.FC = () => {

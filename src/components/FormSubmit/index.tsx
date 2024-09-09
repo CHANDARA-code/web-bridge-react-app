@@ -1,9 +1,9 @@
 import React from "react";
-import {
-  capturePhoto,
-  onFormSubmit,
-  requestCameraPermission,
-} from "../../utils";
+// import {
+//   capturePhoto,
+//   onFormSubmit,
+//   requestCameraPermission,
+// } from "../../utils";
 import SizeBox from "../Sizebox";
 
 const FormSubmit: React.FC = () => {

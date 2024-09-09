@@ -1,10 +1,13 @@
 import React from "react";
-import {
-  capturePhoto,
-  onFormSubmit,
-  requestCameraPermission,
-  selectFile,
-} from "../../utils";
+// import {
+//   capturePhoto,
+//   onFormSubmit,
+//   requestCameraPermission,
+//   selectFile,
+// } from "../../utils";
+
+import { selectFile } from "javascript_dg";
+
 import SizeBox from "../Sizebox";
 
 const FilesPicker: React.FC = () => {

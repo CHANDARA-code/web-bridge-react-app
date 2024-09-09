@@ -1,13 +1,22 @@
 import React from "react";
+// import {
+//   capturePhoto,
+//   onFormSubmit,
+//   pickPhoto,
+//   pickPhotoBase64,
+//   requestCameraPermission,
+//   requestPhotoPermission,
+//   selectFile,
+// } from "../../utils";
+
 import {
   capturePhoto,
-  onFormSubmit,
   pickPhoto,
   pickPhotoBase64,
   requestCameraPermission,
   requestPhotoPermission,
   selectFile,
-} from "../../utils";
+} from "javascript_dg";
 import SizeBox from "../Sizebox";
 
 const PhotoPicker: React.FC = () => {

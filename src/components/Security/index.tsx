@@ -1,7 +1,6 @@
 import React from "react";
-import {
-  sendEncryptedData,
-} from "../../utils";
+import { sendEncryptedData } from "javascript_dg";
+// import { sendEncryptedData } from "../../utils";
 import SizeBox from "../Sizebox";
 
 const Security: React.FC = () => {

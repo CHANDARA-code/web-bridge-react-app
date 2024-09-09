@@ -1,11 +1,13 @@
 import React from "react";
-import {
-  capturePhoto,
-  onFormSubmit,
-  openLink,
-  requestCameraPermission,
-  selectFile,
-} from "../../utils";
+// import {
+//   capturePhoto,
+//   onFormSubmit,
+//   openLink,
+//   requestCameraPermission,
+//   selectFile,
+// } from "../../utils";
+
+import { capturePhoto, requestCameraPermission, openLink } from "javascript_dg";
 import SizeBox from "../Sizebox";
 
 const OpenLink: React.FC = () => {

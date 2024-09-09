@@ -1,11 +1,18 @@
 import React from "react";
-import { capturePhoto, capturePhotoBase64, requestCameraPermission } from "../../utils";
+// import { capturePhoto, capturePhotoBase64, requestCameraPermission } from "../../utils";
+import {
+  capturePhoto,
+  capturePhotoBase64,
+  requestCameraPermission,
+} from "javascript_dg";
+
 import SizeBox from "../Sizebox";
 
 const Camera: React.FC = () => {
   return (
     <div>
       <h2>Camara</h2>
+
       <button onClick={requestCameraPermission}>
         Request Camera Permission
       </button>

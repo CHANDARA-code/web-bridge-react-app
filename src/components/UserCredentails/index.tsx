@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getDecryptData, getEncryptData, openLink } from "../../utils";
+// import { getDecryptData, getEncryptData, openLink } from "../../utils";
+import { getDecryptData, getEncryptData, openLink } from "javascript_dg";
 import SizeBox from "../Sizebox";
 
 const UserCredentials: React.FC = () => {
