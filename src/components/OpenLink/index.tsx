@@ -7,7 +7,7 @@ import React from "react";
 //   selectFile,
 // } from "../../utils";
 
-import { capturePhoto, requestCameraPermission, openLink } from "javascript_dg";
+import { capturePhoto, requestCameraPermission, openLink } from "dg-super-app-bridge";
 import SizeBox from "../Sizebox";
 
 const OpenLink: React.FC = () => {

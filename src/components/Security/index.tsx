@@ -1,5 +1,5 @@
 import React from "react";
-import { sendEncryptedData } from "javascript_dg";
+import { sendEncryptedData } from "dg-super-app-bridge";
 // import { sendEncryptedData } from "../../utils";
 import SizeBox from "../Sizebox";
 

@@ -6,9 +6,10 @@ import React from "react";
 //   selectFile,
 // } from "../../utils";
 
-import { selectFile } from "javascript_dg";
+// import { selectFile } from "javascript_dg";
 
 import SizeBox from "../Sizebox";
+import { selectFile } from "dg-super-app-bridge";
 
 const FilesPicker: React.FC = () => {
   return (

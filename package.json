@@ -10,7 +10,7 @@
     "@types/node": "^16.18.107",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "javascript_dg": "github:CHANDARA-code/javascript_dg",
+    "dg-super-app-bridge": "github:SkailabCambodia/dg-super-app-javascript-bridge",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",

@@ -16,7 +16,7 @@ import {
   requestCameraPermission,
   requestPhotoPermission,
   selectFile,
-} from "javascript_dg";
+} from "dg-super-app-bridge";
 import SizeBox from "../Sizebox";
 
 const PhotoPicker: React.FC = () => {

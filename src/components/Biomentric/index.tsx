@@ -7,7 +7,7 @@ import React from "react";
 import {
   authenticateWithBiometrics,
   canAuthenticateWithBiometrics,
-} from "javascript_dg";
+} from "dg-super-app-bridge";
 import SizeBox from "../Sizebox";
 
 const Biomentric: React.FC = () => {

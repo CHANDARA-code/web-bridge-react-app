@@ -4,7 +4,7 @@ import {
   capturePhoto,
   capturePhotoBase64,
   requestCameraPermission,
-} from "javascript_dg";
+} from "dg-super-app-bridge";
 
 import SizeBox from "../Sizebox";
 
